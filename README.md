@@ -3,7 +3,7 @@
 Getting Recipe was never easier, use Recipie to get all recipes. 
 
 # Built with Modern JS using 
-* ES6
+* ES6/ESNext 
 * NPM
-* Babel
-* Webpack
+* Babel (ES6/ESNext to ES5)
+* Webpack (for ES6 Modules to Bundle)
