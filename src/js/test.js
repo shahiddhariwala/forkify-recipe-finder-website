@@ -1,2 +1,2 @@
 console.log('imported module');
-export default 313;
+export default "Lolllllll";
