@@ -1,4 +1,4 @@
-#  Recipie
+#  Forkify - The Recipie
 ## 🥚 🍳 🥞  🍞 🥐 🥯 🥖 🥨 🍔 🍟 🌭 🍕 🥪 🌮 🌯 🥙 🍝 🍛 🥘 🍲 🍤 🥗 🥫🥓 🍖 🍗 🥩 🥢 🥡 🥟 🍚 🍜 🥠 🥮
 Getting Recipe was never easier, use Recipie to get all recipes. 
 
