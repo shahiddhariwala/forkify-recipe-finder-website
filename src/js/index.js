@@ -1,18 +1,37 @@
-// Global app controller
-import axios from 'axios';
+import Search from './models/Search';
+
 /*
-fetch only works on  modern browsers but for older browsers its not supported
-so we use axious
-we can install it by 'npm install axios --save'
+Global State of the app
+- Search Object
+- Current Recipe Object
+- Shopping list object
+- Liked recipes
 */
-async function getResult(query) {
-    //in one step we get directly json data not raw unlike fetch
-    try {
-        const result = await axios(`https://forkify-api.herokuapp.com/api/search?q=${query}`);
-        const recipes = result.data.recipes;
-        console.log(recipes);
-    } catch (error) {
-        console.log(error)
+
+const state = {};
+
+const controlSearch = async ()=>
+{
+    //1. Get query fromm view
+    const query = 'pizza';
+
+    if(query)
+    {
+        //2. New Search object and add to the state
+        state.search = new Search(query);
+
+        //3. Prepare UI for results
+
+        //4. Search for recipes
+        await state.search.getResults();
+
+        //5. Render results on UI
+        console.log(state.search.result);
     }
-}
-getResult('pizza');
+};
+document.querySelector('.search').addEventListener('submit',event=>
+{
+    event.preventDefault();
+    controlSearch();
+});
+
