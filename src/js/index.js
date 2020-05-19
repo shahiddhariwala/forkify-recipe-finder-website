@@ -6,7 +6,7 @@ so we use axious
 we can install it by 'npm install axios --save'
 */
 async function getResult(query) {
-    //one step we get directly json data not raw
+    //in one step we get directly json data not raw unlike fetch
     try {
         const result = await axios(`https://forkify-api.herokuapp.com/api/search?q=${query}`);
         const recipes = result.data.recipes;
