@@ -1,5 +1,16 @@
 import { elements } from "./base";
 
+export const clearInput = () =>
+{   
+    elements.searchInput.value='';
+};
+
+export const clearResults = () =>
+{   
+    elements.searchResultList.innerHTML='';
+};
+
+
 export const getInput = () => elements.searchInput.value;
 const renderRecipe = (recipe) => {
   const markup = ` <li>

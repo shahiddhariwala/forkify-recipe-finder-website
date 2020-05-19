@@ -23,6 +23,8 @@ const controlSearch = async ()=>
         state.search = new Search(query);
 
         //3. Prepare UI for results
+        searchView.clearInput(); // for removing the input value in search bar
+        searchView.clearResults(); // for removing previous result in the result list
 
         //4. Search for recipes
         await state.search.getResults();
