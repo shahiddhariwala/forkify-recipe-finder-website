@@ -99,7 +99,7 @@ const controlRecipe = async () => {
             //Render Recipe
             clearLoader();
             console.log(state.recipe);
-            recipeView.renderRecipe(state.recipe);
+            recipeView.renderRecipe(state.likes.isliked(id),state.recipe);
         } catch (error) {
             console.log(error);
             alert('Error processing recipe :(');
@@ -172,6 +172,7 @@ const controlLike = ()=>
         //TOggle the like button
         likesView.toggleLikeButton(true);
         //Add like to UI list
+        likesView.renderLike(newLike);
         console.log(state.likes);
     }//User has liked current recipe
     else
@@ -181,8 +182,7 @@ const controlLike = ()=>
         //Toggle the like button
         likesView.toggleLikeButton(false);
         //Remove like from UI list
-       
-        console.log(state.likes);
+        likesView.deleteLike(currentID);
     }
 };
 //Handling recipe button clicks
