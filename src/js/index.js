@@ -76,6 +76,7 @@ const controlRecipe = async () => {
         //Create new Recipe Object
         state.recipe = new Recipe(id);
 
+        
         try {
             //Get Recipe Data
             await state.recipe.getRecipe();
@@ -84,6 +85,10 @@ const controlRecipe = async () => {
             state.recipe.calculateTimeToMake();
             state.recipe.calulateServing();
 
+            if(state.search)
+            {
+                searchView.highlightSelectedRecipe(state.recipe.id);
+            }
             
             //parse ingredients
             state.recipe.parseIngredients();

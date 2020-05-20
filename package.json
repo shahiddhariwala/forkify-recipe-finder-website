@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "fraction": "^0.2.0",
+    "fractional": "^1.0.0",
     "webpack-cli": "^3.3.11"
   }
 }
