@@ -6,6 +6,7 @@ import {
 } from './views/base';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
 import Recipe from './models/Recipe';
 import List from './models/List';
 
@@ -31,17 +32,16 @@ const controlSearch = async () => {
         searchView.clearInput(); // for removing the input value in search bar
         searchView.clearResults(); // for removing previous result in the result list
         renderLoader(elements.searchResult);
-try{
+        try {
 
 
-        //4. Search for recipes
-        await state.search.getResults();
+            //4. Search for recipes
+            await state.search.getResults();
 
-        //5. Render results on UI
-        clearLoader();
-        searchView.renderResults(state.search.result);
-    }
-        catch (error) {
+            //5. Render results on UI
+            clearLoader();
+            searchView.renderResults(state.search.result);
+        } catch (error) {
             clearLoader();
             console.log(error);
             alert('Something went Wrong :(');
@@ -70,7 +70,7 @@ const controlRecipe = async () => {
     const id = window.location.hash.replace('#', '');
 
     if (id) {
-        
+
         //Prepare UI for changes
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
@@ -78,7 +78,7 @@ const controlRecipe = async () => {
         //Create new Recipe Object
         state.recipe = new Recipe(id);
 
-        
+
         try {
             //Get Recipe Data
             await state.recipe.getRecipe();
@@ -87,11 +87,10 @@ const controlRecipe = async () => {
             state.recipe.calculateTimeToMake();
             state.recipe.calulateServing();
 
-            if(state.search)
-            {
+            if (state.search) {
                 searchView.highlightSelectedRecipe(state.recipe.id);
             }
-            
+
             //parse ingredients
             state.recipe.parseIngredients();
 
@@ -99,8 +98,7 @@ const controlRecipe = async () => {
             clearLoader();
             console.log(state.recipe);
             recipeView.renderRecipe(state.recipe);
-        }  
-        catch (error) {
+        } catch (error) {
             console.log(error);
             alert('Error processing recipe :(');
         }
@@ -113,25 +111,62 @@ const controlRecipe = async () => {
 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
+/*
+List Controller
+*/
+
+//handle delete nd update list item events
+elements.shoppingList.addEventListener('click',e=>
+{
+    
+    const id = e.target.closest('.shopping__item').dataset.itemid;
+
+    //handle thew delete button
+    if(e.target.matches('.shopping_delete','.shopping__delete *'))
+    {
+        //Delete form state
+        state.list.deleteItem(id);
+
+        //Delete from UI
+        listView.deleteItem(id);
+    }else if(e.target.matches('.shpping__count-value'))
+    {
+        //Handles the count update
+        const val = parseInt(e.target.value,10);
+        state.list.updateCount(id,val);
+    }
+});
+const controlList = () => {
+
+    //Create list if list not present in state
+    if(!state.list)
+    {
+        state.list = new List();
+    }
+
+    state.recipe.ingredients.forEach(el =>
+        {
+            const item = state.list.addItem(el.count,el.unit,el.ingredient)
+            listView.renderItem(item);
+        });
+};
+
 //Handling recipe button clicks
 
-elements.recipe.addEventListener('click', e=>
-{
-    if(e.target.matches('.btn-decrease, .btn-decrease *'))
-    {
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')) {
         //decrease button is clicked
-        if(state.recipe.serving > 1)
-        {
+        if (state.recipe.serving > 1) {
             state.recipe.updateServing('dec');
             recipeView.updateServingIngridient(state.recipe);
         }
-    }
-    else if(e.target.matches('.btn-increase, .btn-increase *'))
-    {
+    } else if (e.target.matches('.btn-increase, .btn-increase *')) {
         //decrease button is clicked
         state.recipe.updateServing('inc');
         recipeView.updateServingIngridient(state.recipe);
+    } else if (e.target.matches('.recipe__btn-add , .recipe__btn-add *')) {
+        //add list to view
+        elements.shoppingList.innerHTML=""; // to avoid repetition         
+        controlList();
     }
-    
 });
-

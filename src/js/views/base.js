@@ -6,7 +6,7 @@ export const elements =
     searchResult: document.querySelector('.results'),
     searchResultPages : document.querySelector('.results__pages'),
     recipe : document.querySelector('.recipe'),
-    shoppingList : document.querySelector('.shopping__list');
+    shoppingList : document.querySelector('.shopping__list')
 
 };
 

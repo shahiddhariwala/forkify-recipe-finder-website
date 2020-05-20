@@ -1,4 +1,4 @@
-import {uniqid} from 'uniqid';
+import uniqid from 'uniqid';
 export default class List
 {
     constructor() {
@@ -8,7 +8,7 @@ export default class List
     {
         const item =
         {
-            id:uniqid();
+            id:uniqid(),
             count,
             unit,
             ingredient
@@ -19,7 +19,7 @@ export default class List
 
     deleteItem(id)
     {
-        const index = thgis.items.findIndex(el => el.id===id);
+        const index = this.items.findIndex(el => el.id===id);
         this.items.splice(index,1);
     }
 
