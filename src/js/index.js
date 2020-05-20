@@ -36,7 +36,8 @@ try{
 
         //5. Render results on UI
         clearLoader();
-        searchView.renderResults(state.search.result);}
+        searchView.renderResults(state.search.result);
+    }
         catch (error) {
             clearLoader();
             console.log(error);
@@ -78,11 +79,15 @@ const controlRecipe = async () => {
             state.recipe.calculateTimeToMake();
             state.recipe.calulateServing();
 
+            //parse ingredients
+            state.recipe.parseIngredients();
+            
             //Render Recipe
             console.log(state.recipe);
-        } catch (error) {
+        }  
+        catch (error) {
             console.log(error);
-            alert('Something went Wrong :(');
+            alert('Error processing recipe :(');
         }
 
     }
