@@ -17,7 +17,7 @@ export const highlightSelectedRecipe  = id =>
         el.classList.remove('results__link--active');
     })
 
-    document.querySelector(`results__link[href*="${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href*="${id}"]`).classList.add('results__link--active');
 
 };
 export const limitRecipeTitle = (title, limit = 17) => {
@@ -76,7 +76,7 @@ const renderButtons = (page, numResults, pagePerResult) => {
         button = `${createButton(page,'prev')} ${createButton(page,'next')}`;
        
     }
-    elements.searchResultPages.insertAdjacentHTML('beforeend',button);
+    elements.searchResultPages.insertAdjacentHTML('afterbegin',button);
 
 };
 export const renderResults = (recipes, page = 1, pagePerResult = 10) => {
