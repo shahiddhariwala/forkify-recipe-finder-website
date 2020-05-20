@@ -19,7 +19,9 @@ export default class Likes
 
     isliked(id)
     {
-        return this.likes.findIndex(el => id===id) !==-1;
+        
+        const ans = this.likes.findIndex(el => el.id===id) !==-1;
+        return ans;
     }
 
     getNumLikes()
