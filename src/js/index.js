@@ -135,4 +135,3 @@ elements.recipe.addEventListener('click', e=>
     
 });
 
-window
