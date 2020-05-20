@@ -7,6 +7,8 @@ import {
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import Recipe from './models/Recipe';
+import List from './models/List';
+
 /*
 Global State of the app
 - Search Object
@@ -132,3 +134,5 @@ elements.recipe.addEventListener('click', e=>
     }
     
 });
+
+window
