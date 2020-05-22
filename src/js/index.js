@@ -155,8 +155,6 @@ elements.shoppingList.addEventListener('click', e => {
 /*
 Like Controller
 */
-
-
 const controlLike = ()=>
 {
     if(!state.likes) state.likes = new Likes();
