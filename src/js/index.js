@@ -132,25 +132,22 @@ const controlList = () => {
         });
 };
 
-//handle delete nd update list item events
-elements.shoppingList.addEventListener('click',e=>
-{
-    
+// Handle delete and update list item events
+elements.shoppingList.addEventListener('click', e => {
     const id = e.target.closest('.shopping__item').dataset.itemid;
 
-    //handle thew delete button
-    if(e.target.matches('.shopping_delete .shopping__delete *'))
-    {
-        //Delete form state
+    // Handle the delete button
+    if (e.target.matches('.shopping__delete, .shopping__delete *')) {
+        // Delete from state
         state.list.deleteItem(id);
-
-        //Delete from UI
+        console.log("I am here");
+        // Delete from UI
         listView.deleteItem(id);
-    }else if(e.target.matches('.shpping__count-value'))
-    {
-        //Handles the count update
-        const val = parseInt(e.target.value,10);
-        state.list.updateCount(id,val);
+
+    // Handle the count update
+    } else if (e.target.matches('.shopping__count-value')) {
+        const val = parseFloat(e.target.value, 10);
+        state.list.updateCount(id, val);
     }
 });
 
